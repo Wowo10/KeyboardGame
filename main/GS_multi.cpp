@@ -11,7 +11,7 @@ GS_multi::~GS_multi()
 
 }
 
-void GS_multi::Update(sf::RenderWindow &window)
+void GS_multi::Update(const sf::RenderWindow &window)
 {
 
 }

@@ -45,6 +45,8 @@ int main()
 
 		StateManager.dq_states.back()->Render(&window);
 
+		Events::Refresh();
+
 		window.display();
 	} 
 

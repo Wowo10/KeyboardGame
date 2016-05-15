@@ -23,12 +23,14 @@ Events::~Events(void)
 
 void Events::Refresh()
 {
-
+	clock.restart();
 }
 
 void Events::Init()
 {
 	exit = false;
+
+	srand(time(NULL));
 
 	screenheight = 780;
 	screenwidth = 1024;

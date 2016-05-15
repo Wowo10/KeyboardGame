@@ -11,6 +11,7 @@
 #include <iostream>
 #include <cassert>
 #include <functional>
+#include <ctime>
 #include "Events.hpp"
 #include "Button.hpp"
 

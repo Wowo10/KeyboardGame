@@ -59,11 +59,18 @@ public:
 //klasa GS_MENU
 class GS_menu :public GameState
 {
+	sf::Texture keyboardtexture;
+	sf::Sprite rightsprite;
+	sf::Sprite leftsprite;
 public:
-	void Update(sf::RenderWindow &window);
+	void Update(const sf::RenderWindow &window);
 	void Render(sf::RenderWindow *window);
 
+	sf::Time timer;
+
 	void Exit();
+	void GoSingle();
+	void GoMulti();
 
 	GS_menu();
 	~GS_menu();
@@ -73,7 +80,7 @@ public:
 class GS_multi :public GameState
 {
 public:
-	void Update(sf::RenderWindow &window);
+	void Update(const sf::RenderWindow &window);
 	void Render(sf::RenderWindow *window);
 
 	GS_multi();
@@ -90,7 +97,7 @@ public:
 	GS_single();
 	~GS_single();
 
-	void Update(sf::RenderWindow &window);
+	void Update(const sf::RenderWindow &window);
 	void Render(sf::RenderWindow *window);
 };
 
@@ -98,8 +105,8 @@ public:
 class GS_pause :public GameState
 {
 public:
+	void Update(const sf::RenderWindow &window);
 	void Render(sf::RenderWindow *window);
-	void Update(sf::RenderWindow &window);
 
 	GS_pause();
 	~GS_pause();

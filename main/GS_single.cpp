@@ -13,7 +13,7 @@ GS_single::~GS_single()
 
 };
 
-void GS_single::Update(sf::RenderWindow &window)
+void GS_single::Update(const sf::RenderWindow &window)
 {
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
 	{
@@ -24,11 +24,5 @@ void GS_single::Update(sf::RenderWindow &window)
 
 void GS_single::Render(sf::RenderWindow *window)
 {
-	window->clear(sf::Color::Magenta);
+	window->clear(sf::Color(0, 155, 255)); //Background: 009bff 
 };
-/*
-void GS_single::Draw(int przesuniecie,int pozycja)
-{
-
-};
-*/

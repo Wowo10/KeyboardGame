@@ -31,7 +31,6 @@ void Button::Init() // MAKE IT IN A CONSTRUCTOR! No idea why not working
 
 void Button::checkState(const sf::RenderWindow &window)
 {
-	std::cout << sf::Mouse::getPosition(window).x << " " << sf::Mouse::getPosition(window).y <<"\n";
 	if (sf::Mouse::getPosition(window).x > currentSpr.getPosition().x &&
 		sf::Mouse::getPosition(window).x < (currentSpr.getPosition().x + currentSpr.getTextureRect().width))
 	{
