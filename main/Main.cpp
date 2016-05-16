@@ -36,11 +36,6 @@ int main()
 				Events::exit = true;
 				window.close();
 			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-			{
-				Events::exit = true;
-				window.close();
-			}
 		}
 
 		StateManager.dq_states.back()->Render(&window);

@@ -15,13 +15,14 @@ public:
 	static int screenheight;
 	static int screenwidth;
 
-	static sf::Font menufont;
+	static sf::Font font;
 
 	static void Refresh();
 	static void Init();
 
 	static sf::Texture LoadTexture(std::string path);
 	
+	static int CenterText(const sf::Text* text);
 };
 
 #endif //EVENTS_HPP_INCLUDED

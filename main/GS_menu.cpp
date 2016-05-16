@@ -50,13 +50,19 @@ void GS_menu::GoSingle()
 void GS_menu::GoMulti()
 {
 	action = PUSH;
-	state = GS_SINGLE;
+	state = GS_MULTI;
 }
 
 //Functions
 void GS_menu::Update(const sf::RenderWindow &window)
 {
 	GameState::Update(window);
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+	{
+		Exit();
+	}
+
 }
 
 void GS_menu::Render(sf::RenderWindow *window)
@@ -64,7 +70,7 @@ void GS_menu::Render(sf::RenderWindow *window)
 	window->clear(sf::Color(0, 155, 255)); //Background: 009bff 
 	GameState::Render(window);
 
-	sf::Text title("Keyboard Game", Events::menufont, 60);
+	sf::Text title("Keyboard Game", Events::font, 60);
 
 	timer = Events::clock.getElapsedTime();
 	rightsprite.setPosition(rightsprite.getPosition() - sf::Vector2f(0, timer.asSeconds() * 14));
@@ -73,6 +79,6 @@ void GS_menu::Render(sf::RenderWindow *window)
 	leftsprite.setPosition(leftsprite.getPosition() + sf::Vector2f(0, timer.asSeconds() * 10));
 	window->draw(leftsprite);
 
-	title.setPosition((Events::screenwidth - title.getLocalBounds().width) / 2, 100);
+	title.setPosition(Events::CenterText(&title), 100);
 	window->draw(title);
 }

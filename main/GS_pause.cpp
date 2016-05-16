@@ -11,6 +11,11 @@ GS_pause::~GS_pause()
 
 }
 
+void GS_pause::Exit()
+{
+
+}
+
 void GS_pause::Update(const sf::RenderWindow &window)
 {
 

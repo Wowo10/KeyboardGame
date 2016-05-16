@@ -7,7 +7,7 @@ bool Events::exit;
 int Events::screenheight;
 int Events::screenwidth;
 
-sf::Font Events::menufont;
+sf::Font Events::font;
 
 //metody klasy statycznej
 Events::Events(void)
@@ -35,7 +35,7 @@ void Events::Init()
 	screenheight = 780;
 	screenwidth = 1024;
 
-	if (!menufont.loadFromFile("Fonts/Font.otf"))
+	if (!font.loadFromFile("Fonts/Font.otf"))
 	{
 		std::cout << "No Such Font!\n";
 	}
@@ -52,3 +52,7 @@ sf::Texture Events::LoadTexture(std::string path)
 	return temp;
 }
 
+int Events::CenterText(const sf::Text* text)
+{
+	return (Events::screenwidth - text->getLocalBounds().width) / 2;
+}
