@@ -24,6 +24,13 @@ void GS_single::Exit()
 	state = GS_NONE;
 }
 
+void GS_single::LoadRandomWord()
+{
+	//Load File with words, get number of words and choose randomly
+
+	active = "LOKOMOTYWA"; //and add it here
+}
+
 void GS_single::Update(const sf::RenderWindow &window)
 {
 	GameState::Update(window);
@@ -31,7 +38,7 @@ void GS_single::Update(const sf::RenderWindow &window)
 	{
 		Exit();
 	}
-	
+
 	if (stage == WRITE)
 	{
 		//Get Pressed Keys
@@ -43,6 +50,10 @@ void GS_single::Update(const sf::RenderWindow &window)
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
 		{
 			stage = WRITE;
+			LoadRandomWord();
+
+			Events::clock.restart();
+			timer = Events::clock.getElapsedTime();
 		}
 	}
 };
@@ -54,8 +65,29 @@ void GS_single::Render(sf::RenderWindow *window)
 
 	if (stage == READY)
 	{
-		sf::Text instruction("Press Enter when ready",Events::font,30);
-		instruction.setPosition(Events::CenterText(&instruction),100);
+		sf::Text instruction("Press Enter when ready", Events::font, 30);
+		instruction.setPosition(Events::CenterText(&instruction), 100);
+
+		window->draw(instruction);
+	}
+	else if (stage == WRITE)
+	{
+		sf::Text instruction("Write ASAP!", Events::font, 30);
+		instruction.setPosition(Events::CenterText(&instruction), 100);
+
+		window->draw(instruction);
+
+		timer += Events::clock.getElapsedTime();
+
+		sf::Text elapsed(Events::TimeText(timer.asMilliseconds()), Events::font, 30);
+		elapsed.setPosition(700, 200);
+
+		window->draw(elapsed);
+	}
+	else
+	{
+		sf::Text instruction("Press Enter for next challenge", Events::font, 30);
+		instruction.setPosition(Events::CenterText(&instruction), 100);
 
 		window->draw(instruction);
 	}

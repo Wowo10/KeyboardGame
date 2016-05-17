@@ -36,6 +36,10 @@ int main()
 				Events::exit = true;
 				window.close();
 			}
+			else if (event.type == sf::Event::KeyPressed)
+			{
+				//possibly checking keys here
+			}
 		}
 
 		StateManager.dq_states.back()->Render(&window);

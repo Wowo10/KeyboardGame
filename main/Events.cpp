@@ -52,7 +52,21 @@ sf::Texture Events::LoadTexture(std::string path)
 	return temp;
 }
 
+std::string Events::TimeText(int miliseconds)
+{
+	std::string temp = std::to_string(miliseconds / 1000);
+	temp += ':';
+	temp += std::to_string((miliseconds % 1000) / 100);
+	return temp;
+}
+
 int Events::CenterText(const sf::Text* text)
 {
 	return (Events::screenwidth - text->getLocalBounds().width) / 2;
+}
+
+char Events::GetKeyPressed()
+{
+	//checking
+	return 0;
 }

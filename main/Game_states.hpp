@@ -99,6 +99,11 @@ private:
 	};
 
 	Stage stage = READY;
+
+	void LoadRandomWord();
+
+	std::string active;
+	std::string byuser = "";
 public:
 	void Update(const sf::RenderWindow &window);
 	void Render(sf::RenderWindow *window);

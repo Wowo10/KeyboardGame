@@ -21,6 +21,10 @@ public:
 	static void Init();
 
 	static sf::Texture LoadTexture(std::string path);
+
+	static std::string TimeText(int miliseconds);
+
+	static char GetKeyPressed();
 	
 	static int CenterText(const sf::Text* text);
 };
