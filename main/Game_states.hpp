@@ -98,12 +98,51 @@ private:
 		WAIT
 	};
 
+	enum Typed
+	{
+		NOT = 0,
+		GOOD,
+		BAD
+	};
+
+	struct Letter
+	{		
+		char sign;
+		Typed type;
+
+		sf::Color GetColor()
+		{
+			if (type == NOT)
+			{
+				return sf::Color::White;
+			}
+			else if (type == GOOD)
+			{
+				return sf::Color::Green;
+			}
+			else
+			{
+				return sf::Color::Red;
+			}
+		}
+
+		Letter(char sign)
+		{
+			this->sign = sign;
+			type = NOT;
+		}
+
+	};
+
 	Stage stage = READY;
 
 	void LoadRandomWord();
 
-	std::string active;
-	std::string byuser = "";
+	std::vector<Letter> word;
+	int index = 0;
+
+	bool press = false;
+
 public:
 	void Update(const sf::RenderWindow &window);
 	void Render(sf::RenderWindow *window);

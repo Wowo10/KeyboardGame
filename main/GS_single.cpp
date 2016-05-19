@@ -26,9 +26,26 @@ void GS_single::Exit()
 
 void GS_single::LoadRandomWord()
 {
-	//Load File with words, get number of words and choose randomly
+	word.clear();
+	
+	std::fstream file;
+	file.open("Fonts/Words.txt", std::ios::in);
 
-	active = "LOKOMOTYWA"; //and add it here
+	if (!file.is_open())
+	{
+		std::cout << "no Words file!\n";
+	}
+
+	std::string text;
+	for (int i = 0; i < rand()%4+1; i++)
+	{
+		std::getline(file,text);
+	}
+
+	for (int i = 0; i < text.length(); i++)
+	{
+		word.push_back(text[i]);
+	}
 }
 
 void GS_single::Update(const sf::RenderWindow &window)
@@ -41,9 +58,30 @@ void GS_single::Update(const sf::RenderWindow &window)
 
 	if (stage == WRITE)
 	{
-		//Get Pressed Keys
+		char key = Events::GetKeyPressed();
+		if (!press)
+		{
+			if (word[index].sign == key)
+			{
+				word[index++].type = GOOD;
+				press = true;
+			}
+			else if (key != 0)
+			{
+				press = true;
+				word[index++].type = BAD;
+			}
+		}
+		else if(key == 0)
+		{
+			press = false;
+		}
 
-		//Check end then push WAIT
+		if (index == word.size())
+		{
+			stage = WAIT;
+			index = 0;
+		}		
 	}
 	else //for both Ready and Wait
 	{
@@ -63,6 +101,11 @@ void GS_single::Render(sf::RenderWindow *window)
 	window->clear(sf::Color(0, 155, 255)); //Background: 009bff 
 	GameState::Render(window);
 
+	sf::Text elapsed(Events::TimeText(timer.asMilliseconds()), Events::font, 30);
+	elapsed.setPosition(700, 200);
+
+	window->draw(elapsed);
+
 	if (stage == READY)
 	{
 		sf::Text instruction("Press Enter when ready", Events::font, 30);
@@ -79,10 +122,16 @@ void GS_single::Render(sf::RenderWindow *window)
 
 		timer += Events::clock.getElapsedTime();
 
-		sf::Text elapsed(Events::TimeText(timer.asMilliseconds()), Events::font, 30);
-		elapsed.setPosition(700, 200);
+		int amount = (Events::screenwidth - word.size() * 24) / 2; //24 - hardcoded width of letter
 
-		window->draw(elapsed);
+		for (int i = 0; i < word.size(); i++)
+		{
+			sf::Text temp(word[i].sign, Events::font, 26);
+			temp.setColor(word[i].GetColor());
+			temp.setPosition(amount, 400);
+			amount += temp.getLocalBounds().width + 5;
+			window->draw(temp);
+		}
 	}
 	else
 	{

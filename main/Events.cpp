@@ -67,6 +67,14 @@ int Events::CenterText(const sf::Text* text)
 
 char Events::GetKeyPressed()
 {
-	//checking
+	for (int i = 0; i < 25; i++ )
+	{
+		sf::Keyboard::Key key = static_cast<sf::Keyboard::Key>(i);
+		if (sf::Keyboard::isKeyPressed(key))
+		{
+			std::cout << (char)65 + i<< "\n";
+			return 65 + i;
+		}
+	}
 	return 0;
 }
