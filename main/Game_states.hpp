@@ -10,6 +10,7 @@ enum GS_states
 	GS_MENU,
 	GS_SINGLE,
 	GS_MULTI,
+	GS_LOBBY,
 	GS_PAUSE
 };
 
@@ -46,12 +47,17 @@ public:
 			window->draw(buttons[i].getSprite());
 			sf::Text temp(buttons[i].getText(), Events::font, fontsize);
 
+			std::cout << buttons[i].getText() << " ";
+
 			temp.setPosition((buttons[i].getSprite().getTextureRect().width - temp.getLocalBounds().width) / 2
 				+ buttons[i].getSprite().getPosition().x, (buttons[i].getSprite().getTextureRect().height - temp.getLocalBounds().height)
 				/ 2 + buttons[i].getSprite().getPosition().y); //Spaghetti!
 
+			std::cout << temp.getLocalBounds().width << " " << temp.getLocalBounds().height << " ";
+
 			window->draw(temp);
 		}
+		std::cout << "\n";
 	}
 };
 
@@ -106,7 +112,7 @@ private:
 	};
 
 	struct Letter
-	{		
+	{
 		char sign;
 		Typed type;
 
@@ -165,6 +171,20 @@ public:
 
 	GS_pause();
 	~GS_pause();
+};
+
+class GS_lobby : public GameState
+{
+public:
+	void Update(const sf::RenderWindow &window);
+	void Render(sf::RenderWindow *window);
+
+	void Exit();
+	void Join();
+	void Host();
+
+	GS_lobby();
+	~GS_lobby();
 };
 
 #endif //GAME_STATE_HPP_INCLUDED

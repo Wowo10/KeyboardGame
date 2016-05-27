@@ -38,6 +38,10 @@ void GameStateManager::ChangeState(GS_states state)
 		HelpState = new GS_pause;
 		break;
 
+	case GS_LOBBY:
+		HelpState = new GS_lobby;
+		break;
+
 	default: HelpState = new GS_menu;
 	}
 
@@ -65,6 +69,10 @@ void GameStateManager::PushState(GS_states state)
 
 	case GS_PAUSE:
 		HelpState = new GS_pause;
+		break;
+
+	case GS_LOBBY:
+		HelpState = new GS_lobby;
 		break;
 
 	default: HelpState = new GS_menu;

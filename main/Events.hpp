@@ -2,6 +2,13 @@
 #define EVENTS_HPP_INCLUDED
 #include "includes.hpp"
 
+enum ConnectionType
+{
+	NOCONNECTION = 0,
+	CLIENT,
+	SERVER
+};
+
 class Events
 {
 public:
@@ -9,6 +16,8 @@ public:
 	~Events();
 
 	static sf::Clock clock;
+
+	static ConnectionType connection;
 
 	static bool exit;
 
@@ -27,6 +36,10 @@ public:
 	static char GetKeyPressed();
 	
 	static int CenterText(const sf::Text* text);
+
+	//Network part
+	static sf::IpAddress ip;
+	static sf::TcpSocket socket;
 };
 
 #endif //EVENTS_HPP_INCLUDED

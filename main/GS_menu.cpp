@@ -11,6 +11,7 @@ GS_menu::GS_menu()
 
 	buttons.push_back(Button("Buttons/Button.png", "Buttons/Button_hover.png", "/Buttons/Button_clicked.png", "Multi Player", Aligment::CENTER, sf::Vector2f(0, 450)));
 	buttons.back().Init();
+	buttons.back().onclick = std::bind(&GS_menu::GoMulti, this);
 
 	buttons.push_back(Button("Buttons/Button.png", "Buttons/Button_hover.png", "/Buttons/Button_clicked.png", "Exit", Aligment::CENTER, sf::Vector2f(0, 600)));
 	buttons.back().Init();
@@ -50,7 +51,7 @@ void GS_menu::GoSingle()
 void GS_menu::GoMulti()
 {
 	action = PUSH;
-	state = GS_MULTI;
+	state = GS_LOBBY;
 }
 
 //Functions

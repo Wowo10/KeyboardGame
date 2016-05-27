@@ -2,12 +2,17 @@
 
 sf::Clock Events::clock;
 
+ConnectionType Events::connection;
+
 bool Events::exit;
 
 int Events::screenheight;
 int Events::screenwidth;
 
 sf::Font Events::font;
+
+sf::IpAddress Events::ip;
+sf::TcpSocket Events::socket;
 
 //metody klasy statycznej
 Events::Events(void)
@@ -32,6 +37,8 @@ void Events::Init()
 
 	srand(time(NULL));
 
+	connection = NOCONNECTION;
+
 	screenheight = 780;
 	screenwidth = 1024;
 
@@ -39,6 +46,9 @@ void Events::Init()
 	{
 		std::cout << "No Such Font!\n";
 	}
+
+	//Network
+	ip = sf::IpAddress::getLocalAddress();
 }
 
 sf::Texture Events::LoadTexture(std::string path)
